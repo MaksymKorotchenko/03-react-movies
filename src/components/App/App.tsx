@@ -16,15 +16,6 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
-
   const handleSelect = (movie: Movie) => {
     setIsOpen(true);
     setSelectedMovie(movie);
