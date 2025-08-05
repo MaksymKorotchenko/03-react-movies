@@ -19,7 +19,7 @@ export default function MovieGrid({ onSelect, movies }: MovieGridProps) {
               src={
                 item.poster_path
                   ? `${url}${item.poster_path}`
-                  : "/src/img/placeholder.svg"
+                  : "./img/placeholder.svg"
               }
               alt={item.title}
               loading="lazy"
