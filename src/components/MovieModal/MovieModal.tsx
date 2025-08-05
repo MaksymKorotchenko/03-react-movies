@@ -16,6 +16,13 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
   };
 
   useEffect(() => {
+      document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.code === "Escape") {
         onClose();
