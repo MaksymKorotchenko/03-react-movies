@@ -10,7 +10,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import MovieModal from "../MovieModal/MovieModal";
 
 export default function App() {
-  const [title, setTitle] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -33,11 +33,11 @@ export default function App() {
 
   const handleSearch = async (newTitle: string) => {
     try {
-      setTitle([]);
+      setMovies([]);
       setIsLoading(true);
       setIsError(false);
       const data = await getMovies(newTitle);
-      setTitle(data);
+      setMovies(data);
 
       if (data.length === 0) {
         toast.error("No movies found for your request.");
@@ -54,10 +54,16 @@ export default function App() {
       <Toaster />
       <SearchBar onSubmit={handleSearch} />
       {isLoading && <Loader />}
-      <MovieGrid movies={title} onSelect={handleSelect} />
+      <MovieGrid movies={movies} onSelect={handleSelect} />
       {isError && <ErrorMessage />}
       {isOpen && (
-        <MovieModal onClose={() => setIsOpen(false)} movie={selectedMovie} />
+        <MovieModal
+          onClose={() => {
+            setIsOpen(false);
+            setSelectedMovie(null);
+          }}
+          movie={selectedMovie}
+        />
       )}
     </div>
   );
