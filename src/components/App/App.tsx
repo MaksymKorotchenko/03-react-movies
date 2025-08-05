@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { getMovies } from "../../services/movieService";
 import type { Movie } from "../../types/movie";
